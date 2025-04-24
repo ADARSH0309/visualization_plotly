@@ -116,14 +116,27 @@ def display_polar_winds():
     for product in grouped_data['Product'].unique():
         product_data = grouped_data[grouped_data['Product'] == product]
         fig.add_trace(go.Barpolar(
-            r=product_data['CO2_Reduction'], theta=product_data['theta'],
-            marker_color=product_data['color'].iloc[0], name=product
+            r=product_data['CO2_Reduction'],
+            theta=product_data['theta'],
+            marker_color=product_data['color'].iloc[0],
+            name=product,
+            width=15  # Adjust bar width for clarity
         ))
     fig.update_layout(
-        title="Eco Impact Polar Winds", barmode='group',
-        polar=dict(radialaxis=dict(title='CO2 Reduction'), angularaxis=dict(
-            tickvals=grouped_data['theta'].unique(), ticktext=grouped_data['Year'].unique()
-        )), template='plotly_dark'
+        title="Eco Impact Polar Winds",
+        barmode='group',
+        polar=dict(
+            radialaxis=dict(title='CO2 Reduction (tons)', range=[0, grouped_data['CO2_Reduction'].max() * 1.1]),
+            angularaxis=dict(
+                tickvals=grouped_data['theta'].unique(),
+                ticktext=grouped_data['Year'].unique(),
+                direction='clockwise'
+            )
+        ),
+        template='plotly_dark',
+        height=600,
+        width=800,
+        margin=dict(l=50, r=50, b=50, t=50)
     )
     st.plotly_chart(fig, use_container_width=True)
 
@@ -161,7 +174,7 @@ elif selected_viz == "Sales Surface Plot":
     display_sales_surface()
 elif selected_viz == "Interactive Globe":
     display_interactive_globe()
-elif selected_viz == "Polar Wires":
+elif selected_viz == "Polar Winds":
     display_polar_winds()
 elif selected_viz == "Eco Batteries (2021)":
     display_eco_batteries()
