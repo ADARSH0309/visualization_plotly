@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelCo - Your Adventure Begins Here</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-mountain"></i>
+                <span>TravelCo</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li class="dropdown">
+                    <a href="#destinations">Destinations <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="#countries">Countries</a>
+                        <a href="#famous-spots">Famous Tourist Spots</a>
+                        <a href="#tracks">Hiking Trails</a>
+                        <a href="#beaches">Beaches</a>
+                        <a href="#mountains">Mountains</a>
+                        <a href="#experiences">Tailored Experiences</a>
+                    </div>
+                </li>
+                <li><a href="#travel-buddy">Travel Buddy</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#" class="login-btn" onclick="openModal('loginModal')">Login</a></li>
+                <li><a href="#" class="signup-btn" onclick="openModal('signupModal')">Sign Up</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Your Adventure <span class="highlight">Begins Here</span></h1>
+                <p>At TravelCo, we believe travel is the best way to discover life, cultures, and yourself. With years of experience and a team of passionate explorers, we bring you carefully crafted travel experiences across the globe. Whether you're seeking thrill, peace, or a cultural awakening, we're here to guide you every step of the way.</p>
+                <div class="hero-buttons">
+                    <button class="cta-btn primary" onclick="openModal('planModal')">
+                        <i class="fas fa-route"></i>
+                        Generate Travel Plan
+                    </button>
+                    <button class="cta-btn secondary">
+                        <i class="fas fa-phone"></i>
+                        Call Agent
+                    </button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="location-pin">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="airplane">
+                    <i class="fas fa-plane"></i>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- Travel Plan Generator Section -->
+    <section id="plan-generator" class="plan-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Personalized Travel Planning</h2>
+                <p>Get a customized day-by-day itinerary tailored to your preferences</p>
+                <div class="premium-badge">
+                    <i class="fas fa-crown"></i>
+                    <span>Premium Service</span>
+                </div>
+            </div>
+            <div class="plan-preview">
+                <div class="plan-features">
+                    <div class="feature">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h3>Day-by-Day Planning</h3>
+                        <p>Detailed itineraries optimized for your travel dates</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <h3>Location-Based Activities</h3>
+                        <p>Curated experiences based on your interests</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-plane-departure"></i>
+                        <h3>Flight Integration</h3>
+                        <p>Plans synchronized with your arrival and departure</p>
+                    </div>
+                </div>
+                <button class="cta-btn primary large" onclick="openModal('planModal')">
+                    Start Planning - $29.99
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2>What Our <span class="highlight">Travelers Say</span></h2>
+            <p class="section-subtitle">From serene mountain treks and exotic wildlife safaris to architectural wonders and colorful festivals, every journey with us is an invitation to reconnect with the world, and yourself.</p>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <blockquote>
+                        "A dream come true! Every detail was perfectly arranged. Highly recommend TravelCo."
+                    </blockquote>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b9d2c8b4?w=100&h=100&fit=crop&crop=face" alt="Rina Das">
+                        <div>
+                            <h4>Rina Das</h4>
+                            <span>Solo Traveler</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <blockquote>
+                        "Exceptional service, stunning views, and unforgettable memories. Thank you for making our honeymoon magical!"
+                    </blockquote>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" alt="Amit & Sneha">
+                        <div>
+                            <h4>Amit & Sneha</h4>
+                            <span>Newlyweds</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <blockquote>
+                        "The travel buddy feature helped us meet amazing people. Our group adventure was beyond expectations!"
+                    </blockquote>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face" alt="Mike Johnson">
+                        <div>
+                            <h4>Mike Johnson</h4>
+                            <span>Adventure Seeker</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Travel Buddy Section -->
+    <section id="travel-buddy" class="buddy-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Find Your <span class="highlight">Travel Buddy</span></h2>
+                <p>Connect with fellow travelers visiting the same destinations</p>
+            </div>
+            <div class="buddy-features">
+                <div class="buddy-feature">
+                    <i class="fas fa-users"></i>
+                    <h3>Connect with Travelers</h3>
+                    <p>Find people visiting the same location on similar dates</p>
+                </div>
+                <div class="buddy-feature">
+                    <i class="fas fa-calendar-check"></i>
+                    <h3>Shared Experiences</h3>
+                    <p>Plan group activities and share memorable moments</p>
+                </div>
+                <div class="buddy-feature">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Safe & Verified</h3>
+                    <p>All users are verified for your safety and peace of mind</p>
+                </div>
+            </div>
+            <button class="cta-btn primary" onclick="openModal('buddyModal')">
+                Find Travel Buddies
+            </button>
+        </div>
+    </section>
+
+    <!-- Destinations Categories -->
+    <section id="destinations" class="destinations">
+        <div class="container">
+            <h2>Explore <span class="highlight">Destinations</span></h2>
+            <div class="destination-categories">
+                <div class="category-card" data-category="countries">
+                    <img src="https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?w=400&h=300&fit=crop" alt="Countries">
+                    <div class="category-overlay">
+                        <h3>Countries</h3>
+                        <p>Explore destinations by country</p>
+                        <i class="fas fa-globe"></i>
+                    </div>
+                </div>
+                <div class="category-card" data-category="famous-spots">
+                    <img src="https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=400&h=300&fit=crop" alt="Famous Spots">
+                    <div class="category-overlay">
+                        <h3>Famous Tourist Spots</h3>
+                        <p>World-renowned attractions</p>
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                </div>
+                <div class="category-card" data-category="tracks">
+                    <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=400&h=300&fit=crop" alt="Hiking Trails">
+                    <div class="category-overlay">
+                        <h3>Hiking Trails</h3>
+                        <p>Adventure treks and trails</p>
+                        <i class="fas fa-hiking"></i>
+                    </div>
+                </div>
+                <div class="category-card" data-category="beaches">
+                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=300&fit=crop" alt="Beaches">
+                    <div class="category-overlay">
+                        <h3>Beaches</h3>
+                        <p>Coastal paradise destinations</p>
+                        <i class="fas fa-umbrella-beach"></i>
+                    </div>
+                </div>
+                <div class="category-card" data-category="mountains">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop" alt="Mountains">
+                    <div class="category-overlay">
+                        <h3>Mountains</h3>
+                        <p>Majestic peaks and valleys</p>
+                        <i class="fas fa-mountain"></i>
+                    </div>
+                </div>
+                <div class="category-card" data-category="experiences">
+                    <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=400&h=300&fit=crop" alt="Experiences">
+                    <div class="category-overlay">
+                        <h3>Tailored Experiences</h3>
+                        <p>Customized adventure packages</p>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <h2>Travel <span class="highlight">Gallery</span></h2>
+            <div class="gallery-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="mountains">Mountains</button>
+                <button class="filter-btn" data-filter="beaches">Beaches</button>
+                <button class="filter-btn" data-filter="cities">Cities</button>
+                <button class="filter-btn" data-filter="adventures">Adventures</button>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item" data-category="mountains">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop" alt="Mountain View">
+                    <div class="gallery-overlay">
+                        <h3>Himalayan Trek</h3>
+                        <p>Nepal</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.9</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="beaches">
+                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=400&fit=crop" alt="Beach Paradise">
+                    <div class="gallery-overlay">
+                        <h3>Maldives Beach</h3>
+                        <p>Maldives</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.8</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="cities">
+                    <img src="https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=400&h=400&fit=crop" alt="City Lights">
+                    <div class="gallery-overlay">
+                        <h3>Tokyo Nights</h3>
+                        <p>Japan</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.7</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="adventures">
+                    <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=400&h=400&fit=crop" alt="Adventure Trek">
+                    <div class="gallery-overlay">
+                        <h3>Safari Adventure</h3>
+                        <p>Kenya</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.9</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="mountains">
+                    <img src="https://images.unsplash.com/photo-1464822759844-d150f39bf2c8?w=400&h=400&fit=crop" alt="Alpine Lakes">
+                    <div class="gallery-overlay">
+                        <h3>Alpine Lakes</h3>
+                        <p>Switzerland</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.8</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="cities">
+                    <img src="https://images.unsplash.com/photo-1520637836862-4d197d17c86a?w=400&h=400&fit=crop" alt="Historic City">
+                    <div class="gallery-overlay">
+                        <h3>Historic Prague</h3>
+                        <p>Czech Republic</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.6</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Map Section -->
+    <section id="map-section" class="map-section">
+        <div class="container">
+            <h2>Explore with <span class="highlight">Interactive Maps</span></h2>
+            <div class="map-container">
+                <div id="travel-map" class="travel-map">
+                    <div class="map-placeholder">
+                        <i class="fas fa-map"></i>
+                        <p>Interactive map will load here</p>
+                        <button class="cta-btn secondary">Load Map</button>
+                    </div>
+                </div>
+                <div class="map-sidebar">
+                    <h3>Popular Destinations</h3>
+                    <div class="destination-list">
+                        <div class="destination-item">
+                            <img src="https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?w=80&h=60&fit=crop" alt="Paris">
+                            <div class="destination-info">
+                                <h4>Paris, France</h4>
+                                <p>City of Light</p>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.8</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="destination-item">
+                            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=80&h=60&fit=crop" alt="Nepal">
+                            <div class="destination-info">
+                                <h4>Kathmandu, Nepal</h4>
+                                <p>Gateway to Himalayas</p>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.9</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="destination-item">
+                            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=80&h=60&fit=crop" alt="Maldives">
+                            <div class="destination-info">
+                                <h4>Malé, Maldives</h4>
+                                <p>Tropical Paradise</p>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.7</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About <span class="highlight">TravelCo</span></h2>
+                    <p>Founded with a passion for exploration and cultural exchange, TravelCo has been crafting unforgettable travel experiences for adventurers worldwide. Our team of travel experts and local guides work tirelessly to create personalized journeys that go beyond typical tourism.</p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <h3>10,000+</h3>
+                            <p>Happy Travelers</p>
+                        </div>
+                        <div class="stat">
+                            <h3>150+</h3>
+                            <p>Destinations</p>
+                        </div>
+                        <div class="stat">
+                            <h3>5+</h3>
+                            <p>Years Experience</p>
+                        </div>
+                        <div class="stat">
+                            <h3>24/7</h3>
+                            <p>Support</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600&h=400&fit=crop" alt="Our Team">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Get in <span class="highlight">Touch</span></h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Address</h3>
+                            <p>123 Travel Street, Adventure City, AC 12345</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h3>Phone</h3>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p>hello@travelco.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h3>Hours</h3>
+                            <p>24/7 Customer Support</p>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Subject" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Your Message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="cta-btn primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-mountain"></i>
+                        <span>TravelCo</span>
+                    </div>
+                    <p>Your trusted partner for unforgettable travel experiences around the globe.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#destinations">Destinations</a></li>
+                        <li><a href="#travel-buddy">Travel Buddy</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#about">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Travel Planning</a></li>
+                        <li><a href="#">Travel Buddy</a></li>
+                        <li><a href="#">Agent Consultation</a></li>
+                        <li><a href="#">Custom Packages</a></li>
+                        <li><a href="#">24/7 Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 TravelCo. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            <h2>Login to TravelCo</h2>
+            <form class="auth-form">
+                <div class="form-group">
+                    <input type="email" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="cta-btn primary full-width">Login</button>
+                <p class="auth-switch">Don't have an account? <a href="#" onclick="switchModal('loginModal', 'signupModal')">Sign Up</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Sign Up Modal -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('signupModal')">&times;</span>
+            <h2>Join TravelCo</h2>
+            <form class="auth-form">
+                <div class="form-group">
+                    <input type="text" placeholder="Full Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Password" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Confirm Password" required>
+                </div>
+                <button type="submit" class="cta-btn primary full-width">Sign Up</button>
+                <p class="auth-switch">Already have an account? <a href="#" onclick="switchModal('signupModal', 'loginModal')">Login</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Travel Plan Modal -->
+    <div id="planModal" class="modal">
+        <div class="modal-content large">
+            <span class="close" onclick="closeModal('planModal')">&times;</span>
+            <h2>Generate Your Travel Plan</h2>
+            <div class="premium-badge">
+                <i class="fas fa-crown"></i>
+                <span>Premium Service - $29.99</span>
+            </div>
+            <form class="plan-form">
+                <div class="form-section">
+                    <h3>Flight Information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Departure City</label>
+                            <input type="text" placeholder="e.g., New York" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Arrival City</label>
+                            <input type="text" placeholder="e.g., Paris" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Departure Date</label>
+                            <input type="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Return Date</label>
+                            <input type="date" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3>Travel Preferences</h3>
+                    <div class="form-group">
+                        <label>Interests (Select all that apply)</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" value="historical"> Historical Tours</label>
+                            <label><input type="checkbox" value="adventure"> Adventure Sports</label>
+                            <label><input type="checkbox" value="relaxation"> Relaxation</label>
+                            <label><input type="checkbox" value="food"> Food Experiences</label>
+                            <label><input type="checkbox" value="culture"> Cultural Immersion</label>
+                            <label><input type="checkbox" value="nature"> Nature & Wildlife</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Budget Range</label>
+                        <select required>
+                            <option value="">Select Budget</option>
+                            <option value="budget">Budget ($50-100/day)</option>
+                            <option value="mid">Mid-range ($100-200/day)</option>
+                            <option value="luxury">Luxury ($200+/day)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="payment-section">
+                    <h3>Payment Information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="text" placeholder="Card Number" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="MM/YY" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="CVV" required>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="cta-btn primary full-width">Generate Plan - $29.99</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Travel Buddy Modal -->
+    <div id="buddyModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('buddyModal')">&times;</span>
+            <h2>Find Travel Buddies</h2>
+            <form class="buddy-form">
+                <div class="form-group">
+                    <label>Destination</label>
+                    <input type="text" placeholder="Where are you going?" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Travel Start Date</label>
+                        <input type="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Travel End Date</label>
+                        <input type="date" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Travel Style</label>
+                    <select required>
+                        <option value="">Select Style</option>
+                        <option value="adventure">Adventure</option>
+                        <option value="relaxed">Relaxed</option>
+                        <option value="cultural">Cultural</option>
+                        <option value="party">Party</option>
+                        <option value="budget">Budget</option>
+                        <option value="luxury">Luxury</option>
+                    </select>
+                </div>
+                <button type="submit" class="cta-btn primary full-width">Find Buddies</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

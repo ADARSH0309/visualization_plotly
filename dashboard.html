@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - TravelCo</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .dashboard {
+            padding-top: 100px;
+            min-height: 100vh;
+            background: var(--background-light);
+        }
+        
+        .dashboard-header {
+            background: white;
+            padding: var(--spacing-xl) 0;
+            margin-bottom: var(--spacing-xl);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .dashboard-nav {
+            display: flex;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .dashboard-nav button {
+            background: none;
+            border: none;
+            padding: var(--spacing-md) var(--spacing-lg);
+            font-family: var(--font-primary);
+            font-weight: var(--font-weight-medium);
+            color: var(--text-light);
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: var(--transition-fast);
+        }
+        
+        .dashboard-nav button.active,
+        .dashboard-nav button:hover {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+        
+        .dashboard-content {
+            display: none;
+        }
+        
+        .dashboard-content.active {
+            display: block;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .stat-card {
+            background: white;
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            transition: var(--transition-normal);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .stat-card i {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .stat-card h3 {
+            font-size: 2rem;
+            font-weight: var(--font-weight-bold);
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .plan-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-lg);
+            overflow: hidden;
+            transition: var(--transition-normal);
+        }
+        
+        .plan-card:hover {
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .plan-card-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: white;
+            padding: var(--spacing-lg);
+        }
+        
+        .plan-card-body {
+            padding: var(--spacing-lg);
+        }
+        
+        .plan-status {
+            display: inline-block;
+            padding: var(--spacing-xs) var(--spacing-md);
+            border-radius: var(--radius-lg);
+            font-size: 0.8rem;
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .status-active {
+            background: var(--success-color);
+            color: white;
+        }
+        
+        .status-pending {
+            background: var(--warning-color);
+            color: white;
+        }
+        
+        .status-completed {
+            background: var(--text-light);
+            color: white;
+        }
+        
+        .buddy-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .buddy-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            padding: var(--spacing-lg);
+            transition: var(--transition-normal);
+        }
+        
+        .buddy-card:hover {
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .buddy-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .buddy-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: var(--radius-full);
+            object-fit: cover;
+        }
+        
+        .activity-item {
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+        
+        .activity-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: var(--radius-full);
+            background: var(--secondary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        
+        .settings-form {
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            padding: var(--spacing-xl);
+        }
+        
+        .form-section {
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .form-section h3 {
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-md);
+            font-size: 1.3rem;
+        }
+        
+        .avatar-upload {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .current-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: var(--radius-full);
+            object-fit: cover;
+            border: 4px solid var(--border-color);
+        }
+        
+        .upload-btn {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-family: var(--font-primary);
+            transition: var(--transition-fast);
+        }
+        
+        .upload-btn:hover {
+            background: #e55a2b;
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard-nav {
+                flex-wrap: wrap;
+                gap: var(--spacing-sm);
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-mountain"></i>
+                <span>TravelCo</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#destinations">Destinations</a></li>
+                <li><a href="index.html#travel-buddy">Travel Buddy</a></li>
+                <li><a href="index.html#gallery">Gallery</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="dashboard.html" class="login-btn">Dashboard</a></li>
+                <li><a href="#" class="signup-btn" onclick="logout()">Logout</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard -->
+    <div class="dashboard">
+        <div class="dashboard-header">
+            <div class="container">
+                <h1>Welcome back, <span class="highlight">John!</span></h1>
+                <p>Manage your travel plans and connect with fellow adventurers</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <!-- Dashboard Navigation -->
+            <div class="dashboard-nav">
+                <button class="active" onclick="showDashboardContent('overview')">
+                    <i class="fas fa-tachometer-alt"></i>
+                    Overview
+                </button>
+                <button onclick="showDashboardContent('plans')">
+                    <i class="fas fa-route"></i>
+                    My Plans
+                </button>
+                <button onclick="showDashboardContent('buddies')">
+                    <i class="fas fa-users"></i>
+                    Travel Buddies
+                </button>
+                <button onclick="showDashboardContent('activity')">
+                    <i class="fas fa-history"></i>
+                    Activity
+                </button>
+                <button onclick="showDashboardContent('settings')">
+                    <i class="fas fa-cog"></i>
+                    Settings
+                </button>
+            </div>
+
+            <!-- Overview Content -->
+            <div id="overview" class="dashboard-content active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <h3>5</h3>
+                        <p>Active Plans</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-users"></i>
+                        <h3>12</h3>
+                        <p>Travel Buddies</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-globe"></i>
+                        <h3>23</h3>
+                        <p>Countries Visited</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-star"></i>
+                        <h3>4.9</h3>
+                        <p>Average Rating</p>
+                    </div>
+                </div>
+
+                <h2>Recent Activity</h2>
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-plane"></i>
+                    </div>
+                    <div>
+                        <h4>New travel plan generated</h4>
+                        <p>Paris, France - 7 days adventure plan</p>
+                        <small>2 hours ago</small>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <div>
+                        <h4>New travel buddy connection</h4>
+                        <p>Sarah Johnson wants to connect for Tokyo trip</p>
+                        <small>1 day ago</small>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div>
+                        <h4>Trip completed</h4>
+                        <p>Amazing adventure in Swiss Alps</p>
+                        <small>3 days ago</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- My Plans Content -->
+            <div id="plans" class="dashboard-content">
+                <div class="section-header">
+                    <h2>My Travel Plans</h2>
+                    <button class="cta-btn primary" onclick="openModal('planModal')">
+                        <i class="fas fa-plus"></i>
+                        Create New Plan
+                    </button>
+                </div>
+
+                <div class="plan-card">
+                    <div class="plan-card-header">
+                        <h3>Paris Adventure</h3>
+                        <p>March 15 - March 22, 2024</p>
+                    </div>
+                    <div class="plan-card-body">
+                        <span class="plan-status status-active">Active</span>
+                        <p>7-day cultural and culinary exploration of the City of Light</p>
+                        <div style="margin-top: 1rem;">
+                            <button class="cta-btn secondary small">View Details</button>
+                            <button class="cta-btn primary small">Edit Plan</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="plan-card">
+                    <div class="plan-card-header">
+                        <h3>Tokyo Discovery</h3>
+                        <p>May 10 - May 20, 2024</p>
+                    </div>
+                    <div class="plan-card-body">
+                        <span class="plan-status status-pending">Pending</span>
+                        <p>10-day adventure through modern and traditional Japan</p>
+                        <div style="margin-top: 1rem;">
+                            <button class="cta-btn secondary small">View Details</button>
+                            <button class="cta-btn primary small">Complete Payment</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="plan-card">
+                    <div class="plan-card-header">
+                        <h3>Swiss Alps Trek</h3>
+                        <p>January 5 - January 12, 2024</p>
+                    </div>
+                    <div class="plan-card-body">
+                        <span class="plan-status status-completed">Completed</span>
+                        <p>Mountain adventure with breathtaking alpine views</p>
+                        <div style="margin-top: 1rem;">
+                            <button class="cta-btn secondary small">View Photos</button>
+                            <button class="cta-btn primary small">Rate Experience</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Travel Buddies Content -->
+            <div id="buddies" class="dashboard-content">
+                <div class="section-header">
+                    <h2>Travel Buddies</h2>
+                    <button class="cta-btn primary" onclick="openModal('buddyModal')">
+                        <i class="fas fa-search"></i>
+                        Find New Buddies
+                    </button>
+                </div>
+
+                <div class="buddy-list">
+                    <div class="buddy-card">
+                        <div class="buddy-header">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b9d2c8b4?w=60&h=60&fit=crop&crop=face" alt="Sarah" class="buddy-avatar">
+                            <div>
+                                <h4>Sarah Johnson</h4>
+                                <p>Adventure Enthusiast</p>
+                            </div>
+                        </div>
+                        <p>Traveling to Tokyo in May 2024</p>
+                        <div class="buddy-interests">
+                            <span class="interest-tag">Adventure</span>
+                            <span class="interest-tag">Photography</span>
+                        </div>
+                        <div style="margin-top: 1rem;">
+                            <button class="cta-btn primary small">Message</button>
+                            <button class="cta-btn secondary small">View Profile</button>
+                        </div>
+                    </div>
+
+                    <div class="buddy-card">
+                        <div class="buddy-header">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&crop=face" alt="Mike" class="buddy-avatar">
+                            <div>
+                                <h4>Mike Chen</h4>
+                                <p>Cultural Explorer</p>
+                            </div>
+                        </div>
+                        <p>Planning a trip to Italy in June 2024</p>
+                        <div class="buddy-interests">
+                            <span class="interest-tag">Culture</span>
+                            <span class="interest-tag">Food</span>
+                        </div>
+                        <div style="margin-top: 1rem;">
+                            <button class="cta-btn primary small">Message</button>
+                            <button class="cta-btn secondary small">View Profile</button>
+                        </div>
+                    </div>
+
+                    <div class="buddy-card">
+                        <div class="buddy-header">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=60&h=60&fit=crop&crop=face" alt="Alex" class="buddy-avatar">
+                            <div>
+                                <h4>Alex Rivera</h4>
+                                <p>Solo Backpacker</p>
+                            </div>
+                        </div>
+                        <p>Exploring Southeast Asia this summer</p>
+                        <div class="buddy-interests">
+                            <span class="interest-tag">Budget</span>
+                            <span class="interest-tag">Hiking</span>
+                        </div>
+                        <div style="margin-top: 1rem;">
+                            <button class="cta-btn primary small">Message</button>
+                            <button class="cta-btn secondary small">View Profile</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Activity Content -->
+            <div id="activity" class="dashboard-content">
+                <h2>Activity History</h2>
+                
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-plane"></i>
+                    </div>
+                    <div>
+                        <h4>Travel plan generated</h4>
+                        <p>Created a 7-day plan for Paris, France</p>
+                        <small>2 hours ago</small>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <div>
+                        <h4>New buddy connection</h4>
+                        <p>Connected with Sarah Johnson for Tokyo trip</p>
+                        <small>1 day ago</small>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div>
+                        <h4>Review submitted</h4>
+                        <p>Rated Swiss Alps trek experience - 5 stars</p>
+                        <small>2 days ago</small>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div>
+                        <h4>Trip completed</h4>
+                        <p>Successfully completed Swiss Alps adventure</p>
+                        <small>3 days ago</small>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <div>
+                        <h4>Payment processed</h4>
+                        <p>Payment for Tokyo Discovery plan - $299</p>
+                        <small>1 week ago</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Content -->
+            <div id="settings" class="dashboard-content">
+                <h2>Account Settings</h2>
+                
+                <form class="settings-form">
+                    <div class="form-section">
+                        <h3>Profile Information</h3>
+                        <div class="avatar-upload">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face" alt="Profile" class="current-avatar">
+                            <div>
+                                <button type="button" class="upload-btn">
+                                    <i class="fas fa-camera"></i>
+                                    Change Avatar
+                                </button>
+                                <p style="margin-top: 0.5rem; color: var(--text-light); font-size: 0.9rem;">
+                                    JPG, PNG or GIF. Max size 2MB.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" value="John" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" value="Doe" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" value="john.doe@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Bio</label>
+                            <textarea rows="3" placeholder="Tell us about yourself and your travel interests...">Adventure seeker and culture enthusiast. Love exploring new places and meeting fellow travelers!</textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Travel Preferences</h3>
+                        <div class="form-group">
+                            <label>Preferred Travel Style</label>
+                            <select>
+                                <option value="adventure">Adventure</option>
+                                <option value="cultural">Cultural</option>
+                                <option value="relaxation">Relaxation</option>
+                                <option value="budget">Budget</option>
+                                <option value="luxury">Luxury</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Interests</label>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" checked> Adventure Sports</label>
+                                <label><input type="checkbox" checked> Cultural Sites</label>
+                                <label><input type="checkbox"> Food & Cuisine</label>
+                                <label><input type="checkbox"> Photography</label>
+                                <label><input type="checkbox" checked> Nature & Wildlife</label>
+                                <label><input type="checkbox"> Nightlife</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Notification Settings</h3>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" checked> Email notifications for new travel buddies</label>
+                            <label><input type="checkbox" checked> SMS alerts for trip reminders</label>
+                            <label><input type="checkbox"> Marketing emails and promotions</label>
+                            <label><input type="checkbox" checked> Weekly travel inspiration newsletter</label>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Privacy Settings</h3>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" checked> Make my profile visible to other travelers</label>
+                            <label><input type="checkbox" checked> Allow travel buddy requests</label>
+                            <label><input type="checkbox"> Share my travel plans publicly</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="cta-btn primary">
+                        <i class="fas fa-save"></i>
+                        Save Changes
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals from main page -->
+    <div id="planModal" class="modal">
+        <div class="modal-content large">
+            <span class="close" onclick="closeModal('planModal')">&times;</span>
+            <h2>Generate Your Travel Plan</h2>
+            <div class="premium-badge">
+                <i class="fas fa-crown"></i>
+                <span>Premium Service - $29.99</span>
+            </div>
+            <form class="plan-form">
+                <div class="form-section">
+                    <h3>Flight Information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Departure City</label>
+                            <input type="text" placeholder="e.g., New York" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Arrival City</label>
+                            <input type="text" placeholder="e.g., Paris" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Departure Date</label>
+                            <input type="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Return Date</label>
+                            <input type="date" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3>Travel Preferences</h3>
+                    <div class="form-group">
+                        <label>Interests (Select all that apply)</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" value="historical"> Historical Tours</label>
+                            <label><input type="checkbox" value="adventure"> Adventure Sports</label>
+                            <label><input type="checkbox" value="relaxation"> Relaxation</label>
+                            <label><input type="checkbox" value="food"> Food Experiences</label>
+                            <label><input type="checkbox" value="culture"> Cultural Immersion</label>
+                            <label><input type="checkbox" value="nature"> Nature & Wildlife</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Budget Range</label>
+                        <select required>
+                            <option value="">Select Budget</option>
+                            <option value="budget">Budget ($50-100/day)</option>
+                            <option value="mid">Mid-range ($100-200/day)</option>
+                            <option value="luxury">Luxury ($200+/day)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="payment-section">
+                    <h3>Payment Information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="text" placeholder="Card Number" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="MM/YY" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="CVV" required>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="cta-btn primary full-width">Generate Plan - $29.99</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="buddyModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('buddyModal')">&times;</span>
+            <h2>Find Travel Buddies</h2>
+            <form class="buddy-form">
+                <div class="form-group">
+                    <label>Destination</label>
+                    <input type="text" placeholder="Where are you going?" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Travel Start Date</label>
+                        <input type="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Travel End Date</label>
+                        <input type="date" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Travel Style</label>
+                    <select required>
+                        <option value="">Select Style</option>
+                        <option value="adventure">Adventure</option>
+                        <option value="relaxed">Relaxed</option>
+                        <option value="cultural">Cultural</option>
+                        <option value="party">Party</option>
+                        <option value="budget">Budget</option>
+                        <option value="luxury">Luxury</option>
+                    </select>
+                </div>
+                <button type="submit" class="cta-btn primary full-width">Find Buddies</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        function showDashboardContent(contentId) {
+            // Hide all content
+            const contents = document.querySelectorAll('.dashboard-content');
+            contents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all nav buttons
+            const navButtons = document.querySelectorAll('.dashboard-nav button');
+            navButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Show selected content
+            document.getElementById(contentId).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+        
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = 'index.html';
+            }
+        }
+        
+        // Handle settings form submission
+        document.querySelector('.settings-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            showNotification('Settings saved successfully!', 'success');
+        });
+    </script>
+</body>
+</html>
